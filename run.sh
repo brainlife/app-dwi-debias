@@ -35,7 +35,7 @@ fi
 
 rm -rf ./tmp/
 
-if [ ! -s dwi.nii.gz ];
+if [ ! -s ./dwi/dwi.nii.gz ];
 then
 	echo "output missing"
 	exit 1
