@@ -43,8 +43,8 @@ You can submit this App online at [https://doi.org/10.25663/brainlife.app.234](h
 
 ```json 
 {
-   "dwi":    "testdata/dwi/dwi.nii.gz","
-    "type":    "fsl"
+   "dwi":    "testdata/dwi/dwi.nii.gz",
+   "type":    "fsl"
 } 
 ``` 
 
@@ -81,4 +81,4 @@ This App requires the following libraries when run locally.
 - jsonlab: 
 - FSL: 
 - singularity: 
--ANTs: 
+- ANTs: 
