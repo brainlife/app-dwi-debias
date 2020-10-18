@@ -77,8 +77,8 @@ The secondary output of this app is `product.json`. This file allows web interfa
 
 This App requires the following libraries when run locally. 
 
-- MrTrix3: 
-- jsonlab: 
-- FSL: 
-- singularity: 
-- ANTs: 
+- MRtrix3: https://mrtrix.readthedocs.io/en/3.0_rc3/installation/linux_install.html
+- jsonlab: https://github.com/fangq/jsonlab
+- FSL: https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/FslInstallation
+- singularity: https://singularity.lbl.gov/quickstart
+- ANTs: http://stnava.github.io/ANTs/
