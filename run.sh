@@ -23,7 +23,7 @@ else
 fi
 
 if [ ! -f ${mask} ]; then
-	dwiextract -bzero dwi.mif bzero.mif && dwi2mask bzero.mif mask.mif && mask="mask.mif"
+	dwi2mask dwi.mif mask.mif -force -nthreads $NCORE && mask="mask.mif"
 fi
 
 if [ -f dwi_bias.mif ]; then
