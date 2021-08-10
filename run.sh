@@ -8,7 +8,11 @@ NCORE=8
 dwi=`jq -r '.dwi' config.json`
 bvals=`jq -r '.bvals' config.json`
 bvecs=`jq -r '.bvecs' config.json`
+mask=`jq -r '.mask' config.json`
 alg=`jq -r '.type' config.json`
+ANTSB=`jq -r '.antsb' config.json`
+ANTSC=`jq -r '.antsc' config.json`
+ANTSS=`jq -r '.antss' config.json`
 
 mkdir dwi
 
@@ -18,11 +22,19 @@ else
 	mrconvert -fslgrad $bvecs $bvals $dwi dwi.mif --export_grad_mrtrix dwi.b -stride 1,2,3,4 -force -nthreads $NCORE -quiet
 fi
 
+if [ ! -f ${mask} ]; then
+	dwiextract -bzero dwi.mif bzero.mif && dwi2mask bzero.mif mask.mif && mask="mask.mif"
+fi
+
 if [ -f dwi_bias.mif ]; then
 	echo "file exists. skipping"
 else
 	echo "performing ${alg} debiasing"
-	dwibiascorrect -${alg} dwi.mif dwi_bias.mif -tempdir ./tmp -force -nthreads $NCORE -quiet
+	if [[ ${alg} == 'ants' ]]; then
+		dwibiascorrect -${alg} -ants.b $ANTSB -ants.c $ANTSC -ants.s $ANTSS -mask ${mask} dwi_bias.mif -tempdir ./tmp -force -nthreads $NCORE -quiet
+	else
+		dwibiascorrect -${alg} -mask ${mask} dwi.mif dwi_bias.mif -tempdir ./tmp -force -nthreads $NCORE -quiet
+	fi
 fi
 
 if [ -f dwi.nii.gz ]; then
