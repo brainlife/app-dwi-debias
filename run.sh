@@ -31,7 +31,7 @@ if [ -f dwi_bias.mif ]; then
 else
 	echo "performing ${alg} debiasing"
 	if [[ ${alg} == 'ants' ]]; then
-		dwibiascorrect -${alg} -ants.b $ANTSB -ants.c $ANTSC -ants.s $ANTSS -mask ${mask} dwi_bias.mif -tempdir ./tmp -force -nthreads $NCORE -quiet
+		dwibiascorrect -${alg} -ants.b $ANTSB -ants.c $ANTSC -ants.s $ANTSS -mask ${mask} dwi.mif dwi_bias.mif -tempdir ./tmp -force -nthreads $NCORE -quiet
 	else
 		dwibiascorrect -${alg} -mask ${mask} dwi.mif dwi_bias.mif -tempdir ./tmp -force -nthreads $NCORE -quiet
 	fi
