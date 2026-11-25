@@ -10,7 +10,7 @@
   <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-lightgrey.svg" alt="MIT license"></a>
 </p>
 
-## 🧠 At a glance
+## At a glance
 
 <!-- brainlife-app:begin (generated from the App manifest; edit the manifest, not this block) -->
 
@@ -20,27 +20,27 @@ Converts the DWI to MRtrix format, uses the given brain mask or computes one wit
 
 | | |
 |---|---|
-| 📥 **Inputs** | `neuro/dwi` · `neuro/mask` (optional) |
-| 📤 **Outputs** | `neuro/dwi` |
-| 🐳 **Container** | `brainlife/mrtrix3:3.0_RC3` |
-| ⚙️ **Resources** | 1 CPUs · 0.5 h walltime |
-| 🔗 **Run it** | [doi.org/10.25663/brainlife.app.557](https://doi.org/10.25663/brainlife.app.557) |
+| **Inputs** | `neuro/dwi` · `neuro/mask` (optional) |
+| **Outputs** | `neuro/dwi` |
+| **Container** | `brainlife/mrtrix3:3.0_RC3` |
+| **Resources** | 1 CPUs · 0.5 h walltime |
+| **Run it** | [doi.org/10.25663/brainlife.app.557](https://doi.org/10.25663/brainlife.app.557) |
 
-#### 📥 Inputs
+#### Inputs
 
 | Input | Datatype | Required | Description |
 |---|---|---|---|
 | `dwi` | `neuro/dwi` | yes | The path to the DWI datatype |
 | `mask` | `neuro/mask` (brain, dwi) | no | Optional DWI brain mask; computed with dwi2mask if not given. |
 
-#### 📤 Outputs
+#### Outputs
 
 | Output | Datatype | Description |
 |---|---|---|
 | `dwi` | `neuro/dwi` | The debiased DWI |
 
 <details>
-<summary><b>⚙️ Parameters</b> (4)</summary>
+<summary><b>Parameters</b> (4)</summary>
 
 | Parameter | Type | Default | Description |
 |---|---|---|---|
@@ -53,7 +53,7 @@ Converts the DWI to MRtrix format, uses the given brain mask or computes one wit
 
 <!-- brainlife-app:end -->
 
-## 🏷️ Versions on brainlife.io
+## Versions on brainlife.io
 
 Each version is a separate App on brainlife.io, built from its own branch of this repository.
 
@@ -64,20 +64,20 @@ Each version is a separate App on brainlife.io, built from its own branch of thi
 
 The current version adds an optional brain mask input and exposes the ANTs N4 options.
 
-## 🔬 How it works
+## How it works
 
 1. The DWI and its bvals/bvecs are converted to MRtrix format.
 2. If no brain mask is given, one is computed with `dwi2mask`.
 3. `dwibiascorrect` estimates and removes the B1 bias field inside the mask, with ANTs N4 (`type: ants`, the default) or FSL FAST (`type: fsl`). The ANTs B-spline fitting (`antsb`), convergence (`antsc`) and shrink factor (`antss`) options are passed through as `-ants.b`, `-ants.c` and `-ants.s`.
 4. The corrected image is written back to NIfTI with its gradient table.
 
-## 🚀 Running the App
+## Running the App
 
-### ☁️ On brainlife.io
+### On brainlife.io
 
 Open the App at [doi.org/10.25663/brainlife.app.557](https://doi.org/10.25663/brainlife.app.557), choose a `neuro/dwi` dataset (and optionally a DWI brain mask) from your project, pick the algorithm and press **Execute**. The debiased DWI is archived to your project as a `neuro/dwi` dataset tagged `debiased`.
 
-### 💻 Locally
+### Locally
 
 You need [Singularity/Apptainer](https://apptainer.org/) and [`jq`](https://jqlang.github.io/jq/). `main` runs `run.sh` inside the `brainlife/mrtrix3:3.0_RC3` container, which provides MRtrix3, ANTs and FSL.
 
@@ -105,7 +105,7 @@ You need [Singularity/Apptainer](https://apptainer.org/) and [`jq`](https://jqla
    ./main
    ```
 
-### 🧪 Sample data
+### Sample data
 
 Download a DWI from brainlife.io with the [brainlife CLI](https://github.com/brainlife/cli):
 
@@ -116,7 +116,7 @@ mkdir input
 bl dataset download <dataset id>
 ```
 
-## 📦 Outputs
+## Outputs
 
 ```text
 dwi/
@@ -125,11 +125,11 @@ dwi/
 └── *.bvecs      gradient directions, copied from the input
 ```
 
-## 🩺 Troubleshooting
+## Troubleshooting
 
 - **`output missing`**: the debiased DWI was not written. Check the `dwibiascorrect` error in the log.
 
-## 📚 Citing
+## Citing
 
 > [!TIP]
 > If you use this App in your work, please cite the App, the software it builds on and brainlife.io (below). GitHub's **Cite this repository** button gives the App citation in APA and BibTeX.
@@ -146,13 +146,13 @@ dwi/
 - Hayashi S, Caron BA, Heinsfeld AS, et al. brainlife.io: a decentralized and open-source cloud platform to support neuroscience research. *Nature Methods* 21:809–813 (2024). [doi:10.1038/s41592-024-02237-2](https://doi.org/10.1038/s41592-024-02237-2)
 - Avesani P, McPherson B, Hayashi S, et al. The open diffusion data derivatives, brain data upcycling via integrated publishing of derivatives and reproducible open cloud services. *Scientific Data* 6:69 (2019). [doi:10.1038/s41597-019-0073-y](https://doi.org/10.1038/s41597-019-0073-y)
 
-## 👥 Authors
+## Authors
 
 - Brad Caron
 
 **Contributors:** Soichi Hayashi
 
-## 💰 Funding
+## Funding
 
 [![Wellcome-226486/Z/22/Z](https://img.shields.io/badge/Wellcome-226486%2FZ%2F22%2FZ-purple.svg)](https://wellcome.org/)
 [![NIH-NINDS-U24NS140384](https://img.shields.io/badge/NIH_NINDS-U24NS140384-green.svg)](https://reporter.nih.gov/project-details/11261037)
@@ -171,6 +171,6 @@ dwi/
 
 <sub>brainlife.io is publicly funded, and acknowledging that support helps keep it running. This App was developed with support from Wellcome, the U.S. National Institutes of Health (including the BRAIN Initiative BRAIN CONNECTS program: The Axonal Projectome EXchange, U24NS140384, and the Center for Mesoscale Connectomics, UM1NS132207) and the U.S. National Science Foundation.</sub>
 
-## ⚖️ License
+## License
 
 [MIT](https://github.com/brainlife/app-dwi-debias/blob/v1.1/LICENSE). MRtrix3, ANTs and FSL are distributed under their own licenses.
